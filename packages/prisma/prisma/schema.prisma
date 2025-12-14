@@ -13,8 +13,255 @@ datasource db {
   provider = "postgresql"
 }
 
+////////////////////////////////////////////////////////////
+// ENUMS
+////////////////////////////////////////////////////////////
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum Visibility {
+  PRIVATE
+  FRIENDS
+  PUBLIC
+}
+
+enum ContentOrigin {
+  BASE
+  USER
+}
+
+enum IngredientOwner {
+  SYSTEM
+  USER
+}
+
+enum RecipeStatus {
+  DRAFT
+  PUBLISHED
+}
+
+enum MeasurementUnit {
+  G
+  ML
+}
+
+enum NutrientUnit {
+  G
+  MG
+  UG
+  KCAL
+}
+
+enum NutrientCategory {
+  MACRO
+  MICRO
+  ENERGY
+}
+
+enum TagType {
+  MANUAL
+  DERIVED
+  SYSTEM
+}
+
+enum ConnectionStatus {
+  PENDING
+  ACCEPTED
+  BLOCKED
+}
+
+////////////////////////////////////////////////////////////
+// USER & SOCIAL
+////////////////////////////////////////////////////////////
+
 model User {
-  id        String  @id @default(cuid())
-  email     String  @unique
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String? // hashed password
+  username  String?
+  role      UserRole @default(USER)
   createdAt DateTime @default(now())
+
+  recipes     Recipe[]             @relation("RecipeAuthor")
+  ingredients Ingredient[]         @relation("UserIngredients")
+  favorites   UserFavoriteRecipe[]
+
+  connectionsSent     UserConnection[] @relation("ConnectionSender")
+  connectionsReceived UserConnection[] @relation("ConnectionReceiver")
+}
+
+model UserConnection {
+  id         String           @id @default(cuid())
+  senderId   String
+  receiverId String
+  status     ConnectionStatus
+  createdAt  DateTime         @default(now())
+
+  sender   User @relation("ConnectionSender", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver User @relation("ConnectionReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+
+  @@unique([senderId, receiverId])
+}
+
+////////////////////////////////////////////////////////////
+// INGREDIENTS & NUTRITION
+////////////////////////////////////////////////////////////
+
+model Ingredient {
+  id          String          @id @default(cuid())
+  name        String
+  origin      ContentOrigin
+  ownerType   IngredientOwner
+  ownerUserId String?
+  visibility  Visibility      @default(PRIVATE)
+  density     Float?
+  createdAt   DateTime        @default(now())
+
+  // Forking
+  sourceIngredientId String?
+  sourceIngredient   Ingredient?  @relation("IngredientFork", fields: [sourceIngredientId], references: [id])
+  forks              Ingredient[] @relation("IngredientFork")
+
+  ownerUser  User?                 @relation("UserIngredients", fields: [ownerUserId], references: [id])
+  nutritions IngredientNutrition[]
+  recipes    RecipeIngredient[]
+
+  @@index([name])
+  @@index([visibility])
+  @@index([origin])
+  @@index([ownerUserId])
+}
+
+model Nutrient {
+  id       String           @id @default(cuid())
+  key      String           @unique
+  name     String
+  unit     NutrientUnit
+  category NutrientCategory
+  rda      Float?
+
+  ingredientValues IngredientNutrition[]
+  recipeValues     RecipeNutrition[]
+}
+
+model IngredientNutrition {
+  ingredientId  String
+  nutrientId    String
+  amountPer100g Float
+
+  ingredient Ingredient @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
+  nutrient   Nutrient   @relation(fields: [nutrientId], references: [id], onDelete: Cascade)
+
+  @@id([ingredientId, nutrientId])
+}
+
+////////////////////////////////////////////////////////////
+// RECIPES
+////////////////////////////////////////////////////////////
+
+model Recipe {
+  id           String        @id @default(cuid())
+  title        String
+  slug         String        @unique
+  description  String?
+  instructions String
+  servings     Int
+  prepMinutes  Int?
+  cookMinutes  Int?
+  status       RecipeStatus  @default(DRAFT)
+  visibility   Visibility    @default(PRIVATE)
+  origin       ContentOrigin
+  createdAt    DateTime      @default(now())
+
+  authorId String?
+  author   User?   @relation("RecipeAuthor", fields: [authorId], references: [id])
+
+  // Forking
+  sourceRecipeId String?
+  sourceRecipe   Recipe?  @relation("RecipeFork", fields: [sourceRecipeId], references: [id])
+  forks          Recipe[] @relation("RecipeFork")
+
+  ingredients RecipeIngredient[]
+  nutritions  RecipeNutrition[]
+  tags        RecipeTag[]
+  images      RecipeImage[]
+  favorites   UserFavoriteRecipe[]
+
+  @@index([visibility])
+  @@index([origin])
+  @@index([status])
+}
+
+model RecipeIngredient {
+  recipeId     String
+  ingredientId String
+  quantity     Float
+  unit         MeasurementUnit
+  orderIndex   Int?
+
+  recipe     Recipe     @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  ingredient Ingredient @relation(fields: [ingredientId], references: [id])
+
+  @@id([recipeId, ingredientId])
+}
+
+model RecipeNutrition {
+  recipeId         String
+  nutrientId       String
+  amountTotal      Float
+  amountPerServing Float
+
+  recipe   Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  nutrient Nutrient @relation(fields: [nutrientId], references: [id])
+
+  @@id([recipeId, nutrientId])
+}
+
+////////////////////////////////////////////////////////////
+// TAGGING & MEDIA
+////////////////////////////////////////////////////////////
+
+model Tag {
+  id   String  @id @default(cuid())
+  name String  @unique
+  type TagType
+
+  recipes RecipeTag[]
+}
+
+model RecipeTag {
+  recipeId String
+  tagId    String
+
+  recipe Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  tag    Tag    @relation(fields: [tagId], references: [id])
+
+  @@id([recipeId, tagId])
+}
+
+model RecipeImage {
+  id       String @id @default(cuid())
+  recipeId String
+  url      String
+  order    Int?
+
+  recipe Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+}
+
+////////////////////////////////////////////////////////////
+// USER INTERACTION
+////////////////////////////////////////////////////////////
+
+model UserFavoriteRecipe {
+  userId    String
+  recipeId  String
+  createdAt DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recipe Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  @@id([userId, recipeId])
 }
