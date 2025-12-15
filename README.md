@@ -1,4 +1,4 @@
-# RCPS Monorepo
+# RCPS
 
 RCPS is a Turborepo-based monorepo containing a Next.js web app, an Express API, and a Prisma data layer. Packages share configuration and tooling via workspace packages.
 
@@ -31,18 +31,23 @@ pnpm install
 ```
 
 ## Database
-Generate the Prisma client (run inside `packages/prisma`):
-```bash
-pnpm generate
-```
-
 Run Postgres via Docker (default `DATABASE_URL` in `env.example`)
+
 From the repo root:
 ```bash
 docker-compose up -d
 ```
 
-Apply migrations and seed (run inside `packages/prisma`):
+Generate the Prisma client
+
+From `packages/prisma`:
+```bash
+pnpm generate
+```
+
+Apply migrations and seed
+
+From `packages/prisma`:
 ```bash
 pnpm migrate:dev
 pnpm seed
@@ -50,12 +55,16 @@ pnpm studio   # browser UI
 ```
 
 ## Running the apps
-In one terminal window:
+In one terminal window with tui
+
+From the repo root:
 ```bash
 pnpm dev
 ```
 
-Or in separate terminals from the repo root:
+Or in separate terminals
+
+From the repo root:
 ```bash
 # API (Express)
 cd apps/api && pnpm dev
