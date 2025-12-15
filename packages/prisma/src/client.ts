@@ -1,35 +1,38 @@
-// Import from the locally generated client output instead of the default
-// package name, because the schema generator writes to ../generated/prisma.
-import { PrismaPg } from "@prisma/adapter-pg";
-import * as pg from "pg";
-import { PrismaClient } from "../generated/prisma";
+import { PrismaClient } from "../generated/prisma/index.js";
 
-const databaseUrl = process.env.DATABASE_URL;
-if (!databaseUrl) {
-  throw new Error("DATABASE_URL is not set");
+declare global {
+  // biome-ignore lint/suspicious/noExplicitAny
+  var __prisma__: PrismaClient | undefined;
 }
 
-const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClient | undefined;
-  prismaPgPool: pg.Pool | undefined;
-};
+function createPrismaClient() {
+  // LOCAL DEV: simple, reliable
+  // if (process.env.NODE_ENV !== "production") {
+    return new PrismaClient({
+      log: ["warn", "error"],
+    });
+  // }
 
-const pool =
-  globalForPrisma.prismaPgPool ??
-  new pg.Pool({
-    connectionString: databaseUrl,
-  });
-globalForPrisma.prismaPgPool = pool;
+  // PRODUCTION / NEON
+  // const { PrismaPg } = require("@prisma/adapter-pg");
+  // const pg = require("pg");
 
-const adapter = new PrismaPg(pool);
+  // const pool = new pg.Pool({
+  //   connectionString: process.env.DATABASE_URL,
+  //   max: 5,
+  //   connectionTimeoutMillis: 5000,
+  //   idleTimeoutMillis: 10000,
+  // });
+
+  // return new PrismaClient({
+  //   adapter: new PrismaPg(pool),
+  //   log: ["error"],
+  // });
+}
 
 export const prisma =
-  globalForPrisma.prisma ??
-  new PrismaClient({
-    adapter,
-    log: ["query", "warn", "error"],
-  });
+  globalThis.__prisma__ ?? createPrismaClient();
 
 if (process.env.NODE_ENV !== "production") {
-  globalForPrisma.prisma = prisma;
+  globalThis.__prisma__ = prisma;
 }

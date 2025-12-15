@@ -1,20 +1,19 @@
 import bcrypt from "bcrypt";
 import {
-    ConnectionStatus,
-    ContentOrigin,
-    IngredientOwner,
-    MeasurementUnit,
-    NutrientCategory,
-    NutrientUnit,
-    RecipeStatus,
-    TagType,
-    UserRole,
-    Visibility,
-} from "../generated/prisma";
-import { prisma } from "../src/client";
+  ConnectionStatus,
+  ContentOrigin,
+  IngredientOwner,
+  MeasurementUnit,
+  NutrientCategory,
+  NutrientUnit,
+  RecipeStatus,
+  TagType,
+  UserRole,
+  Visibility,
+} from "../generated/prisma/index.js";
+import { prisma } from "../src/client.js";
 
-const password = "nomayo";
-const hashedPassword = bcrypt.hashSync(password, 10);
+const hashedPassword = bcrypt.hashSync("nomayo", 10);
 
 async function main() {
   console.log("Seeding database...");

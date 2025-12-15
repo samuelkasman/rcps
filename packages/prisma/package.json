@@ -1,30 +1,34 @@
 {
-  "name": "prisma",
+  "name": "@rcps/prisma",
   "version": "1.0.0",
   "description": "",
   "type": "module",
   "main": "src/index.ts",
+  "types": "src/index.ts",
   "exports": {
     ".": "./src/index.ts"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "tsx prisma/seed.ts"
+    "generate": "pnpm exec prisma generate",
+    "db:pull": "pnpm exec prisma db pull",
+    "db:push": "pnpm exec prisma db push",
+    "migrate:dev": "pnpm exec prisma migrate dev",
+    "migrate:deploy": "pnpm exec prisma migrate deploy",
+    "seed": "tsx prisma/seed.ts",
+    "studio": "pnpm exec prisma studio"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/adapter-pg": "^7.1.0",
-    "@prisma/client": "^7.1.0",
+    "@prisma/client": "^6.19.1",
     "bcrypt": "^6.0.0",
-    "pg": "^8.12.0",
-    "prisma": "^7.1.0"
+    "prisma": "^6.19.1"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
     "@types/node": "^20",
-    "@types/pg": "^8.11.0",
     "tsx": "^4.19.2"
   }
 }
