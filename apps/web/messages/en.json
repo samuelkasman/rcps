@@ -1,0 +1,117 @@
+{
+  "Landing": {
+    "title": "RCPS"
+  },
+  "Navbar": {
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "signOut": "Sign out"
+  },
+  "Auth": {
+    "common": {
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "password": "Password",
+      "passwordPlaceholder": "••••••••",
+      "orContinueWith": "or continue with",
+      "google": "Google",
+      "github": "GitHub"
+    },
+    "signIn": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to your account to continue",
+      "forgotPassword": "Forgot password?",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up",
+      "submit": "Sign in",
+      "errors": {
+        "invalidCredentials": "Invalid email or password",
+        "unexpected": "An unexpected error occurred",
+        "providerError": "There was a problem signing in with your provider",
+        "accountNotLinked": "This email is already associated with another account",
+        "sessionRequired": "Please sign in to access this page",
+        "default": "An error occurred. Please try again."
+      }
+    },
+    "signUp": {
+      "title": "Create an account",
+      "subtitle": "Start building your recipe collection",
+      "name": "Name",
+      "namePlaceholder": "John Doe",
+      "confirmPassword": "Confirm password",
+      "passwordHint": "Must be at least 8 characters",
+      "submit": "Create account",
+      "terms": "By creating an account, you agree to our",
+      "termsOfService": "Terms of Service",
+      "and": "and",
+      "privacyPolicy": "Privacy Policy",
+      "hasAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "errors": {
+        "nameRequired": "Name is required",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email",
+        "passwordRequired": "Password is required",
+        "passwordTooShort": "Password must be at least 8 characters",
+        "passwordMismatch": "Passwords do not match",
+        "createFailed": "Failed to create account. Please try again.",
+        "unexpected": "An unexpected error occurred"
+      }
+    },
+    "forgotPassword": {
+      "title": "Forgot password?",
+      "subtitle": "Enter your email and we'll send you a reset link",
+      "submit": "Send reset link",
+      "rememberPassword": "Remember your password?",
+      "signIn": "Sign in",
+      "success": {
+        "title": "Check your email",
+        "message": "We've sent a password reset link to",
+        "backToSignIn": "Back to sign in",
+        "tryAgain": "Didn't receive the email? Try again"
+      },
+      "errors": {
+        "sendFailed": "Failed to send reset email. Please try again."
+      }
+    },
+    "signOut": {
+      "title": "Sign out",
+      "subtitle": "Are you sure you want to sign out?",
+      "submit": "Sign out",
+      "cancel": "Cancel"
+    },
+    "error": {
+      "title": "Authentication Error",
+      "tryAgain": "Try again",
+      "goHome": "Go home",
+      "errors": {
+        "configuration": "There is a problem with the server configuration.",
+        "accessDenied": "Access denied. You do not have permission to sign in.",
+        "verification": "The verification link may have expired or already been used.",
+        "providerError": "There was a problem with the authentication provider.",
+        "accountNotLinked": "This email is already linked to another account. Please sign in with your original provider.",
+        "sessionRequired": "Please sign in to access this page.",
+        "default": "An unexpected error occurred during authentication."
+      }
+    }
+  },
+  "Profile": {
+    "user": "User",
+    "accountSettings": "Account Settings",
+    "email": "Email",
+    "password": "Password",
+    "displayName": "Display Name",
+    "notSet": "Not set",
+    "edit": "Edit",
+    "change": "Change",
+    "quickLinks": "Quick Links",
+    "myRecipes": "My Recipes",
+    "viewYourCollection": "View your collection",
+    "newRecipe": "New Recipe",
+    "addNewRecipe": "Add a new recipe",
+    "dangerZone": "Danger Zone",
+    "deleteAccount": "Delete Account",
+    "deleteAccountDescription": "Permanently delete your account and all data",
+    "delete": "Delete"
+  }
+}

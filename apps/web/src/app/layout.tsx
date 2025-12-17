@@ -2,6 +2,7 @@ import { Navbar } from "@/components/navbar/Navbar";
 import { AuthProvider } from "@/providers/AuthProvider";
 import { QueryProvider } from "@/providers/QueryProvider";
 import type { Metadata } from "next";
+import { NextIntlClientProvider } from 'next-intl';
 import { DM_Sans, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
@@ -36,12 +37,14 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className="bg-midnight text-pearl antialiased">
-        <AuthProvider>
-          <QueryProvider>
-            <Navbar />
-            <main>{children}</main>
-          </QueryProvider>
-        </AuthProvider>
+        <NextIntlClientProvider>
+          <AuthProvider>
+            <QueryProvider>
+              <Navbar />
+              <main>{children}</main>
+            </QueryProvider>
+          </AuthProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

@@ -2,9 +2,12 @@
 
 import { Button } from "@/components/ui/Button";
 import { signOut } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 export default function SignOutPage() {
+  const t = useTranslations("Auth");
+
   return (
     <div className="space-y-8 text-center">
       {/* Icon */}
@@ -28,8 +31,8 @@ export default function SignOutPage() {
 
       {/* Message */}
       <div>
-        <h1 className="text-2xl font-medium text-ivory mb-2">Sign out</h1>
-        <p className="text-silver">Are you sure you want to sign out?</p>
+        <h1 className="text-2xl font-medium text-ivory mb-2">{t("signOut.title")}</h1>
+        <p className="text-silver">{t("signOut.subtitle")}</p>
       </div>
 
       {/* Actions */}
@@ -39,15 +42,14 @@ export default function SignOutPage() {
           className="w-full"
           size="lg"
         >
-          Sign out
+          {t("signOut.submit")}
         </Button>
         <Link href="/">
           <Button variant="ghost" className="w-full" size="lg">
-            Cancel
+            {t("signOut.cancel")}
           </Button>
         </Link>
       </div>
     </div>
   );
 }
-

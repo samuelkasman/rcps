@@ -1,12 +1,37 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 export default function AuthErrorPage() {
   const searchParams = useSearchParams();
   const error = searchParams.get("error");
+  const t = useTranslations("Auth");
+
+  const getErrorMessage = (errorCode: string | null): string => {
+    switch (errorCode) {
+      case "Configuration":
+        return t("error.errors.configuration");
+      case "AccessDenied":
+        return t("error.errors.accessDenied");
+      case "Verification":
+        return t("error.errors.verification");
+      case "OAuthSignin":
+      case "OAuthCallback":
+      case "OAuthCreateAccount":
+      case "EmailCreateAccount":
+      case "Callback":
+        return t("error.errors.providerError");
+      case "OAuthAccountNotLinked":
+        return t("error.errors.accountNotLinked");
+      case "SessionRequired":
+        return t("error.errors.sessionRequired");
+      default:
+        return t("error.errors.default");
+    }
+  };
 
   return (
     <div className="space-y-8 text-center">
@@ -31,51 +56,23 @@ export default function AuthErrorPage() {
 
       {/* Message */}
       <div>
-        <h1 className="text-2xl font-medium text-ivory mb-2">
-          Authentication Error
-        </h1>
-        <p className="text-silver">
-          {getErrorMessage(error)}
-        </p>
+        <h1 className="text-2xl font-medium text-ivory mb-2">{t("error.title")}</h1>
+        <p className="text-silver">{getErrorMessage(error)}</p>
       </div>
 
       {/* Actions */}
       <div className="flex flex-col gap-3">
         <Link href="/auth/signin">
           <Button className="w-full" size="lg">
-            Try again
+            {t("error.tryAgain")}
           </Button>
         </Link>
         <Link href="/">
           <Button variant="ghost" className="w-full" size="lg">
-            Go home
+            {t("error.goHome")}
           </Button>
         </Link>
       </div>
     </div>
   );
 }
-
-function getErrorMessage(error: string | null): string {
-  switch (error) {
-    case "Configuration":
-      return "There is a problem with the server configuration.";
-    case "AccessDenied":
-      return "Access denied. You do not have permission to sign in.";
-    case "Verification":
-      return "The verification link may have expired or already been used.";
-    case "OAuthSignin":
-    case "OAuthCallback":
-    case "OAuthCreateAccount":
-    case "EmailCreateAccount":
-    case "Callback":
-      return "There was a problem with the authentication provider.";
-    case "OAuthAccountNotLinked":
-      return "This email is already linked to another account. Please sign in with your original provider.";
-    case "SessionRequired":
-      return "Please sign in to access this page.";
-    default:
-      return "An unexpected error occurred during authentication.";
-  }
-}
-

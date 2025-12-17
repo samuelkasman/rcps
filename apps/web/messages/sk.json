@@ -1,0 +1,117 @@
+{
+  "Landing": {
+    "title": "RCPS"
+  },
+  "Navbar": {
+    "signIn": "Prihlásiť sa",
+    "signUp": "Registrovať",
+    "signOut": "Odhlásiť sa"
+  },
+  "Auth": {
+    "common": {
+      "email": "Email",
+      "emailPlaceholder": "vas@email.sk",
+      "password": "Heslo",
+      "passwordPlaceholder": "••••••••",
+      "orContinueWith": "alebo pokračujte s",
+      "google": "Google",
+      "github": "GitHub"
+    },
+    "signIn": {
+      "title": "Vitajte späť",
+      "subtitle": "Prihláste sa do svojho účtu a pokračujte",
+      "forgotPassword": "Zabudli ste heslo?",
+      "noAccount": "Nemáte účet?",
+      "signUp": "Registrovať sa",
+      "submit": "Prihlásiť sa",
+      "errors": {
+        "invalidCredentials": "Neplatný email alebo heslo",
+        "unexpected": "Nastala neočakávaná chyba",
+        "providerError": "Nastal problém s prihlásením cez poskytovateľa",
+        "accountNotLinked": "Tento email je už spojený s iným účtom",
+        "sessionRequired": "Pre prístup sa prosím prihláste",
+        "default": "Nastala chyba. Skúste to prosím znova."
+      }
+    },
+    "signUp": {
+      "title": "Vytvoriť účet",
+      "subtitle": "Začnite budovať svoju zbierku receptov",
+      "name": "Meno",
+      "namePlaceholder": "Ján Novák",
+      "confirmPassword": "Potvrdiť heslo",
+      "passwordHint": "Musí mať aspoň 8 znakov",
+      "submit": "Vytvoriť účet",
+      "terms": "Vytvorením účtu súhlasíte s našimi",
+      "termsOfService": "Podmienkami služby",
+      "and": "a",
+      "privacyPolicy": "Zásadami ochrany osobných údajov",
+      "hasAccount": "Už máte účet?",
+      "signIn": "Prihlásiť sa",
+      "errors": {
+        "nameRequired": "Meno je povinné",
+        "emailRequired": "Email je povinný",
+        "emailInvalid": "Zadajte platný email",
+        "passwordRequired": "Heslo je povinné",
+        "passwordTooShort": "Heslo musí mať aspoň 8 znakov",
+        "passwordMismatch": "Heslá sa nezhodujú",
+        "createFailed": "Nepodarilo sa vytvoriť účet. Skúste to prosím znova.",
+        "unexpected": "Nastala neočakávaná chyba"
+      }
+    },
+    "forgotPassword": {
+      "title": "Zabudli ste heslo?",
+      "subtitle": "Zadajte email a pošleme vám odkaz na obnovenie",
+      "submit": "Odoslať odkaz",
+      "rememberPassword": "Pamätáte si heslo?",
+      "signIn": "Prihlásiť sa",
+      "success": {
+        "title": "Skontrolujte email",
+        "message": "Poslali sme odkaz na obnovenie hesla na",
+        "backToSignIn": "Späť na prihlásenie",
+        "tryAgain": "Nedostali ste email? Skúste znova"
+      },
+      "errors": {
+        "sendFailed": "Nepodarilo sa odoslať email. Skúste to prosím znova."
+      }
+    },
+    "signOut": {
+      "title": "Odhlásiť sa",
+      "subtitle": "Naozaj sa chcete odhlásiť?",
+      "submit": "Odhlásiť sa",
+      "cancel": "Zrušiť"
+    },
+    "error": {
+      "title": "Chyba autentifikácie",
+      "tryAgain": "Skúsiť znova",
+      "goHome": "Domov",
+      "errors": {
+        "configuration": "Nastal problém s konfiguráciou servera.",
+        "accessDenied": "Prístup zamietnutý. Nemáte oprávnenie na prihlásenie.",
+        "verification": "Odkaz na overenie mohol vypršať alebo už bol použitý.",
+        "providerError": "Nastal problém s poskytovateľom autentifikácie.",
+        "accountNotLinked": "Tento email je už spojený s iným účtom. Prihláste sa s pôvodným poskytovateľom.",
+        "sessionRequired": "Pre prístup sa prosím prihláste.",
+        "default": "Počas autentifikácie nastala neočakávaná chyba."
+      }
+    }
+  },
+  "Profile": {
+    "user": "Používateľ",
+    "accountSettings": "Nastavenia účtu",
+    "email": "Email",
+    "password": "Heslo",
+    "displayName": "Zobrazované meno",
+    "notSet": "Nenastavené",
+    "edit": "Upraviť",
+    "change": "Zmeniť",
+    "quickLinks": "Rýchle odkazy",
+    "myRecipes": "Moje recepty",
+    "viewYourCollection": "Zobraziť vašu zbierku",
+    "newRecipe": "Nový recept",
+    "addNewRecipe": "Pridať nový recept",
+    "dangerZone": "Nebezpečná zóna",
+    "deleteAccount": "Vymazať účet",
+    "deleteAccountDescription": "Natrvalo vymazať účet a všetky údaje",
+    "delete": "Vymazať"
+  }
+}

@@ -3,12 +3,14 @@
 import { Input } from "@/components/form/Input";
 import { Button } from "@/components/ui/Button";
 import { signIn } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function SignUpPage() {
   const router = useRouter();
+  const t = useTranslations("Auth");
 
   const [formData, setFormData] = useState({
     name: "",
@@ -24,23 +26,23 @@ export default function SignUpPage() {
     const newErrors: Record<string, string> = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
+      newErrors.name = t("signUp.errors.nameRequired");
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
+      newErrors.email = t("signUp.errors.emailRequired");
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email";
+      newErrors.email = t("signUp.errors.emailInvalid");
     }
 
     if (!formData.password) {
-      newErrors.password = "Password is required";
+      newErrors.password = t("signUp.errors.passwordRequired");
     } else if (formData.password.length < 8) {
-      newErrors.password = "Password must be at least 8 characters";
+      newErrors.password = t("signUp.errors.passwordTooShort");
     }
 
     if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match";
+      newErrors.confirmPassword = t("signUp.errors.passwordMismatch");
     }
 
     setErrors(newErrors);
@@ -89,13 +91,13 @@ export default function SignUpPage() {
       });
 
       if (result?.error) {
-        setError("Failed to create account. Please try again.");
+        setError(t("signUp.errors.createFailed"));
       } else {
         router.push("/");
         router.refresh();
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "An unexpected error occurred");
+      setError(err instanceof Error ? err.message : t("signUp.errors.unexpected"));
     } finally {
       setIsLoading(false);
     }
@@ -105,8 +107,8 @@ export default function SignUpPage() {
     <div className="space-y-8">
       {/* Header */}
       <div className="text-center">
-        <h1 className="text-2xl font-medium text-ivory mb-2">Create an account</h1>
-        <p className="text-silver">Start building your recipe collection</p>
+        <h1 className="text-2xl font-medium text-ivory mb-2">{t("signUp.title")}</h1>
+        <p className="text-silver">{t("signUp.subtitle")}</p>
       </div>
 
       {/* Error message */}
@@ -119,10 +121,10 @@ export default function SignUpPage() {
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-5">
         <Input
-          label="Name"
+          label={t("signUp.name")}
           type="text"
           name="name"
-          placeholder="John Doe"
+          placeholder={t("signUp.namePlaceholder")}
           value={formData.name}
           onChange={handleChange}
           error={errors.name}
@@ -130,10 +132,10 @@ export default function SignUpPage() {
         />
 
         <Input
-          label="Email"
+          label={t("common.email")}
           type="email"
           name="email"
-          placeholder="you@example.com"
+          placeholder={t("common.emailPlaceholder")}
           value={formData.email}
           onChange={handleChange}
           error={errors.email}
@@ -141,22 +143,22 @@ export default function SignUpPage() {
         />
 
         <Input
-          label="Password"
+          label={t("common.password")}
           type="password"
           name="password"
-          placeholder="••••••••"
+          placeholder={t("common.passwordPlaceholder")}
           value={formData.password}
           onChange={handleChange}
           error={errors.password}
-          hint="Must be at least 8 characters"
+          hint={t("signUp.passwordHint")}
           autoComplete="new-password"
         />
 
         <Input
-          label="Confirm password"
+          label={t("signUp.confirmPassword")}
           type="password"
           name="confirmPassword"
-          placeholder="••••••••"
+          placeholder={t("common.passwordPlaceholder")}
           value={formData.confirmPassword}
           onChange={handleChange}
           error={errors.confirmPassword}
@@ -169,7 +171,7 @@ export default function SignUpPage() {
           size="lg"
           isLoading={isLoading}
         >
-          Create account
+          {t("signUp.submit")}
         </Button>
       </form>
 
@@ -179,7 +181,7 @@ export default function SignUpPage() {
           <div className="w-full border-t border-charcoal" />
         </div>
         <div className="relative flex justify-center text-sm">
-          <span className="px-4 bg-midnight text-ash">or continue with</span>
+          <span className="px-4 bg-midnight text-ash">{t("common.orContinueWith")}</span>
         </div>
       </div>
 
@@ -209,7 +211,7 @@ export default function SignUpPage() {
               d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
             />
           </svg>
-          Google
+          {t("common.google")}
         </Button>
         <Button
           type="button"
@@ -224,33 +226,32 @@ export default function SignUpPage() {
               d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
             />
           </svg>
-          GitHub
+          {t("common.github")}
         </Button>
       </div>
 
       {/* Terms */}
       <p className="text-center text-xs text-ash">
-        By creating an account, you agree to our{" "}
+        {t("signUp.terms")}{" "}
         <Link href="/terms" className="text-silver hover:text-ivory transition-colors">
-          Terms of Service
+          {t("signUp.termsOfService")}
         </Link>{" "}
-        and{" "}
+        {t("signUp.and")}{" "}
         <Link href="/privacy" className="text-silver hover:text-ivory transition-colors">
-          Privacy Policy
+          {t("signUp.privacyPolicy")}
         </Link>
       </p>
 
       {/* Sign in link */}
       <p className="text-center text-sm text-silver">
-        Already have an account?{" "}
+        {t("signUp.hasAccount")}{" "}
         <Link
           href="/auth/signin"
           className="text-emerald hover:text-emerald-hover font-medium transition-colors"
         >
-          Sign in
+          {t("signUp.signIn")}
         </Link>
       </p>
     </div>
   );
 }
-

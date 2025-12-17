@@ -1,4 +1,8 @@
+import { useTranslations } from 'next-intl';
+
 export default function Home() {
+  const t = useTranslations('Landing');
+
   return (
     <div className="min-h-screen bg-midnight flex flex-col items-center justify-center relative overflow-hidden">
       {/* Subtle gradient overlay */}
@@ -13,7 +17,7 @@ export default function Home() {
       {/* Main content */}
       <div className="relative z-10 text-center px-4">
         <h1 className="font-heading text-[clamp(4rem,15vw,12rem)] leading-none tracking-tight text-ivory">
-          RCPS
+          {t('title')}
         </h1>
       </div>
 

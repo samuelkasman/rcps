@@ -2,6 +2,7 @@
 
 import { Input } from "@/components/form/Input";
 import { Button } from "@/components/ui/Button";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -10,6 +11,7 @@ export default function ForgotPasswordPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const t = useTranslations("Auth");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,7 +34,7 @@ export default function ForgotPasswordPage() {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       setIsSubmitted(true);
     } catch {
-      setError("Failed to send reset email. Please try again.");
+      setError(t("forgotPassword.errors.sendFailed"));
     } finally {
       setIsLoading(false);
     }
@@ -62,9 +64,9 @@ export default function ForgotPasswordPage() {
 
         {/* Message */}
         <div>
-          <h1 className="text-2xl font-medium text-ivory mb-2">Check your email</h1>
+          <h1 className="text-2xl font-medium text-ivory mb-2">{t("forgotPassword.success.title")}</h1>
           <p className="text-silver">
-            We&apos;ve sent a password reset link to{" "}
+            {t("forgotPassword.success.message")}{" "}
             <span className="text-ivory">{email}</span>
           </p>
         </div>
@@ -73,7 +75,7 @@ export default function ForgotPasswordPage() {
         <div className="space-y-3">
           <Link href="/auth/signin">
             <Button className="w-full" size="lg">
-              Back to sign in
+              {t("forgotPassword.success.backToSignIn")}
             </Button>
           </Link>
           <button
@@ -81,7 +83,7 @@ export default function ForgotPasswordPage() {
             onClick={() => setIsSubmitted(false)}
             className="text-sm text-silver hover:text-ivory transition-colors"
           >
-            Didn&apos;t receive the email? Try again
+            {t("forgotPassword.success.tryAgain")}
           </button>
         </div>
       </div>
@@ -92,10 +94,8 @@ export default function ForgotPasswordPage() {
     <div className="space-y-8">
       {/* Header */}
       <div className="text-center">
-        <h1 className="text-2xl font-medium text-ivory mb-2">Forgot password?</h1>
-        <p className="text-silver">
-          Enter your email and we&apos;ll send you a reset link
-        </p>
+        <h1 className="text-2xl font-medium text-ivory mb-2">{t("forgotPassword.title")}</h1>
+        <p className="text-silver">{t("forgotPassword.subtitle")}</p>
       </div>
 
       {/* Error message */}
@@ -108,10 +108,10 @@ export default function ForgotPasswordPage() {
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-6">
         <Input
-          label="Email"
+          label={t("common.email")}
           type="email"
           name="email"
-          placeholder="you@example.com"
+          placeholder={t("common.emailPlaceholder")}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -124,21 +124,20 @@ export default function ForgotPasswordPage() {
           size="lg"
           isLoading={isLoading}
         >
-          Send reset link
+          {t("forgotPassword.submit")}
         </Button>
       </form>
 
       {/* Back link */}
       <p className="text-center text-sm text-silver">
-        Remember your password?{" "}
+        {t("forgotPassword.rememberPassword")}{" "}
         <Link
           href="/auth/signin"
           className="text-emerald hover:text-emerald-hover font-medium transition-colors"
         >
-          Sign in
+          {t("forgotPassword.signIn")}
         </Link>
       </p>
     </div>
   );
 }
-

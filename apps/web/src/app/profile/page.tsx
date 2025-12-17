@@ -2,11 +2,13 @@
 
 import { Button } from "@/components/ui/Button";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export default function ProfilePage() {
   const { data: session, status } = useSession();
+  const t = useTranslations("Profile");
 
   if (status === "loading") {
     return (
@@ -40,7 +42,7 @@ export default function ProfilePage() {
           </div>
           <div>
             <h1 className="text-2xl font-medium text-ivory mb-1">
-              {session?.user?.name || "User"}
+              {session?.user?.name || t("user")}
             </h1>
             <p className="text-silver">{session?.user?.email}</p>
           </div>
@@ -50,35 +52,35 @@ export default function ProfilePage() {
         <div className="space-y-8">
           {/* Account settings */}
           <section className="p-6 rounded-xl border border-charcoal bg-charcoal/20">
-            <h2 className="text-lg font-medium text-ivory mb-4">Account Settings</h2>
+            <h2 className="text-lg font-medium text-ivory mb-4">{t("accountSettings")}</h2>
             <div className="space-y-4">
               <div className="flex items-center justify-between py-3 border-b border-charcoal/50">
                 <div>
-                  <p className="text-ivory">Email</p>
+                  <p className="text-ivory">{t("email")}</p>
                   <p className="text-sm text-silver">{session?.user?.email}</p>
                 </div>
-                <Button variant="ghost" size="sm">Edit</Button>
+                <Button variant="ghost" size="sm">{t("edit")}</Button>
               </div>
               <div className="flex items-center justify-between py-3 border-b border-charcoal/50">
                 <div>
-                  <p className="text-ivory">Password</p>
+                  <p className="text-ivory">{t("password")}</p>
                   <p className="text-sm text-silver">••••••••</p>
                 </div>
-                <Button variant="ghost" size="sm">Change</Button>
+                <Button variant="ghost" size="sm">{t("change")}</Button>
               </div>
               <div className="flex items-center justify-between py-3">
                 <div>
-                  <p className="text-ivory">Display Name</p>
-                  <p className="text-sm text-silver">{session?.user?.name || "Not set"}</p>
+                  <p className="text-ivory">{t("displayName")}</p>
+                  <p className="text-sm text-silver">{session?.user?.name || t("notSet")}</p>
                 </div>
-                <Button variant="ghost" size="sm">Edit</Button>
+                <Button variant="ghost" size="sm">{t("edit")}</Button>
               </div>
             </div>
           </section>
 
           {/* Quick links */}
           <section className="p-6 rounded-xl border border-charcoal bg-charcoal/20">
-            <h2 className="text-lg font-medium text-ivory mb-4">Quick Links</h2>
+            <h2 className="text-lg font-medium text-ivory mb-4">{t("quickLinks")}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Link
                 href="/recipes"
@@ -91,8 +93,8 @@ export default function ProfilePage() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-ivory font-medium">My Recipes</p>
-                    <p className="text-sm text-silver">View your collection</p>
+                    <p className="text-ivory font-medium">{t("myRecipes")}</p>
+                    <p className="text-sm text-silver">{t("viewYourCollection")}</p>
                   </div>
                 </div>
               </Link>
@@ -107,8 +109,8 @@ export default function ProfilePage() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-ivory font-medium">New Recipe</p>
-                    <p className="text-sm text-silver">Add a new recipe</p>
+                    <p className="text-ivory font-medium">{t("newRecipe")}</p>
+                    <p className="text-sm text-silver">{t("addNewRecipe")}</p>
                   </div>
                 </div>
               </Link>
@@ -117,14 +119,14 @@ export default function ProfilePage() {
 
           {/* Danger zone */}
           <section className="p-6 rounded-xl border border-red-500/20 bg-red-500/5">
-            <h2 className="text-lg font-medium text-ivory mb-4">Danger Zone</h2>
+            <h2 className="text-lg font-medium text-ivory mb-4">{t("dangerZone")}</h2>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-ivory">Delete Account</p>
-                <p className="text-sm text-silver">Permanently delete your account and all data</p>
+                <p className="text-ivory">{t("deleteAccount")}</p>
+                <p className="text-sm text-silver">{t("deleteAccountDescription")}</p>
               </div>
               <Button variant="outline" size="sm" className="border-red-500/30 text-red-400 hover:bg-red-500/10 hover:border-red-500/50">
-                Delete
+                {t("delete")}
               </Button>
             </div>
           </section>
@@ -133,4 +135,3 @@ export default function ProfilePage() {
     </div>
   );
 }
-
