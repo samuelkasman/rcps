@@ -4,6 +4,7 @@
   --font-heading: "Space Grotesk", Georgia, serif;
   --font-body: "DM Sans", system-ui, sans-serif;
   
+  /* Dark theme colors (default) */
   --color-midnight: #000000;
   --color-obsidian: #0a0a0a;
   --color-charcoal: #1a1a1a;
@@ -34,11 +35,122 @@ body {
   overflow-x: hidden;
 }
 
+/* Dark theme (default) */
+html.dark body,
 body {
   color: var(--color-pearl);
   background: var(--color-midnight);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Light theme */
+html.light body {
+  color: #1a1a1a;
+  background: #fafafa;
+}
+
+html.light .bg-midnight {
+  background-color: #fafafa;
+}
+
+html.light .bg-midnight\/80 {
+  background-color: rgb(250 250 250 / 0.8);
+}
+
+html.light .bg-charcoal {
+  background-color: #e5e5e5;
+}
+
+html.light .bg-charcoal\/20 {
+  background-color: rgb(229 229 229 / 0.2);
+}
+
+html.light .bg-charcoal\/50 {
+  background-color: rgb(229 229 229 / 0.5);
+}
+
+html.light .border-charcoal {
+  border-color: #d4d4d4;
+}
+
+html.light .border-charcoal\/50 {
+  border-color: rgb(212 212 212 / 0.5);
+}
+
+html.light .border-charcoal\/80 {
+  border-color: rgb(212 212 212 / 0.8);
+}
+
+html.light .text-ivory {
+  color: #0a0a0a;
+}
+
+/* Force white text - use on elements that need white text in both themes */
+.text-white-forced,
+html.light .text-white-forced,
+html.dark .text-white-forced {
+  color: #fafafa !important;
+}
+
+html.light .text-pearl {
+  color: #1a1a1a;
+}
+
+html.light .text-silver {
+  color: #525252;
+}
+
+html.light .text-ash {
+  color: #737373;
+}
+
+html.light .hover\:text-ivory:hover {
+  color: #0a0a0a;
+}
+
+html.light .hover\:bg-charcoal\/50:hover {
+  background-color: rgb(229 229 229 / 0.5);
+}
+
+html.light .hover\:bg-smoke\/50:hover {
+  background-color: rgb(212 212 212 / 0.5);
+}
+
+html.light .hover\:border-smoke:hover {
+  border-color: #a3a3a3;
+}
+
+html.light .from-charcoal\/20 {
+  --tw-gradient-from: rgb(229 229 229 / 0.2);
+}
+
+html.light .from-charcoal\/30 {
+  --tw-gradient-from: rgb(229 229 229 / 0.3);
+}
+
+html.light .via-charcoal\/30 {
+  --tw-gradient-via: rgb(229 229 229 / 0.3);
+}
+
+html.light .via-charcoal\/50 {
+  --tw-gradient-via: rgb(229 229 229 / 0.5);
+}
+
+html.light .from-midnight {
+  --tw-gradient-from: #fafafa;
+}
+
+html.light .via-midnight {
+  --tw-gradient-via: #fafafa;
+}
+
+html.light .to-midnight {
+  --tw-gradient-to: #fafafa;
+}
+
+html.light .to-transparent {
+  --tw-gradient-to: transparent;
 }
 
 * {

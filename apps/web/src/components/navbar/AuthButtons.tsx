@@ -44,7 +44,7 @@ export function AuthButtons() {
       </Link>
       <Link
         href="/auth/signup"
-        className="text-sm px-5 py-2.5 bg-emerald hover:bg-emerald-hover text-ivory font-medium rounded-lg transition-colors duration-200"
+        className="text-sm px-5 py-2.5 bg-emerald hover:bg-emerald-hover text-white-forced font-medium rounded-lg transition-colors duration-200"
       >
         {t("signUp")}
       </Link>

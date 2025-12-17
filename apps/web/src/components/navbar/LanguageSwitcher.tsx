@@ -84,7 +84,7 @@ export function LanguageSwitcher() {
       >
         <span className="text-base">{currentLocale.flag}</span>
         {/* <span>{currentLocale.code.toUpperCase()}</span> */}
-        <svg
+        {/* <svg
           className={`w-4 h-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
           fill="none"
           viewBox="0 0 24 24"
@@ -92,7 +92,7 @@ export function LanguageSwitcher() {
           strokeWidth={2}
         >
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
+        </svg> */}
       </button>
 
       {isOpen && (
@@ -108,13 +108,7 @@ export function LanguageSwitcher() {
               aria-selected={locale === code}
               onClick={() => handleLocaleChange(code)}
               className={`
-                cursor-pointer w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-150
-                ${
-                  locale === code
-                    ? "bg-emerald/20 text-emerald-light"
-                    : "text-silver hover:text-ivory hover:bg-smoke/50"
-                }
-              `}
+                cursor-pointer w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-150 "text-silver hover:text-ivory hover:bg-smoke/50"`}
             >
               <span className="text-lg">{flag}</span>
               <span className="flex-1 text-left">{label}</span>

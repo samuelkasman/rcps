@@ -5,7 +5,7 @@ type ButtonSize = "sm" | "md" | "lg";
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-emerald hover:bg-emerald-hover text-ivory font-medium",
+    "bg-emerald hover:bg-emerald-hover text-white-forced font-medium",
   secondary:
     "bg-charcoal hover:bg-smoke text-ivory",
   ghost:
