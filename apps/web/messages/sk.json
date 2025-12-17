@@ -2,6 +2,10 @@
   "Landing": {
     "title": "RCPS"
   },
+  "Home": {
+    "welcome": "Vitajte späť",
+    "description": "Vaša zbierka receptov vás čaká"
+  },
   "Navbar": {
     "signIn": "Prihlásiť sa",
     "signUp": "Registrovať",
@@ -51,6 +55,7 @@
         "nameRequired": "Meno je povinné",
         "emailRequired": "Email je povinný",
         "emailInvalid": "Zadajte platný email",
+        "emailExists": "Účet s týmto emailom už existuje",
         "passwordRequired": "Heslo je povinné",
         "passwordTooShort": "Heslo musí mať aspoň 8 znakov",
         "passwordMismatch": "Heslá sa nezhodujú",
