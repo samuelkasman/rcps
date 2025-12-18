@@ -121,6 +121,11 @@ html.light .hover\:border-smoke:hover {
   border-color: #a3a3a3;
 }
 
+/* Sidebar light theme */
+html.light .bg-obsidian {
+  background-color: #f5f5f5;
+}
+
 html.light .from-charcoal\/20 {
   --tw-gradient-from: rgb(229 229 229 / 0.2);
 }

@@ -2,6 +2,11 @@
   "Landing": {
     "title": "RCPS"
   },
+  "Sidebar": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "menu": "Menu"
+  },
   "Home": {
     "welcome": "Welcome back",
     "description": "Your recipe collection awaits"
@@ -99,6 +104,20 @@
         "default": "An unexpected error occurred during authentication."
       }
     }
+  },
+  "Dashboard": {
+    "title": "Admin Dashboard",
+    "subtitle": "Monitor and manage your application",
+    "stats": {
+      "totalUsers": "Total Users",
+      "totalRecipes": "Total Recipes",
+      "totalIngredients": "Total Ingredients",
+      "activeToday": "Active Today"
+    },
+    "recentActivity": "Recent Activity",
+    "systemStatus": "System Status",
+    "noData": "No recent activity to display",
+    "allSystemsOperational": "All systems operational"
   },
   "Profile": {
     "user": "User",

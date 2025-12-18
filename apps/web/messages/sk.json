@@ -2,6 +2,11 @@
   "Landing": {
     "title": "RCPS"
   },
+  "Sidebar": {
+    "home": "Domov",
+    "dashboard": "Prehľad",
+    "menu": "Menu"
+  },
   "Home": {
     "welcome": "Vitajte späť",
     "description": "Vaša zbierka receptov vás čaká"
@@ -99,6 +104,20 @@
         "default": "Počas autentifikácie nastala neočakávaná chyba."
       }
     }
+  },
+  "Dashboard": {
+    "title": "Administrátorský prehľad",
+    "subtitle": "Monitorujte a spravujte vašu aplikáciu",
+    "stats": {
+      "totalUsers": "Celkom používateľov",
+      "totalRecipes": "Celkom receptov",
+      "totalIngredients": "Celkom ingrediencií",
+      "activeToday": "Aktívnych dnes"
+    },
+    "recentActivity": "Posledná aktivita",
+    "systemStatus": "Stav systému",
+    "noData": "Žiadna nedávna aktivita na zobrazenie",
+    "allSystemsOperational": "Všetky systémy fungujú"
   },
   "Profile": {
     "user": "Používateľ",
