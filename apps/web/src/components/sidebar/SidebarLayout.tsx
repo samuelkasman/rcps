@@ -132,7 +132,7 @@ export function SidebarLayout({ userRole, children, initialCollapsed = false }: 
           className={`
             fixed top-[86px] z-50 w-6 h-6 rounded-r-full bg-charcoal border border-l-0 border-charcoal/80 
             text-silver hover:text-ivory hover:bg-smoke transition-all duration-300 ease-out
-            flex items-center justify-center shadow-lg md:hidden
+            flex items-center justify-center shadow-lg md:hidden cursor-pointer
             ${isMobileOpen ? "left-64" : "left-0"}
           `}
           aria-label={isMobileOpen ? "Close menu" : "Open menu"}
@@ -184,7 +184,7 @@ export function SidebarLayout({ userRole, children, initialCollapsed = false }: 
           {/* Toggle button */}
           <button
             onClick={handleToggleCollapse}
-            className="absolute -right-3 top-6 w-6 h-6 rounded-full bg-charcoal border border-charcoal/80 text-silver hover:text-ivory hover:bg-smoke transition-colors flex items-center justify-center shadow-lg"
+            className="absolute cursor-pointer -right-3 top-6 w-6 h-6 rounded-full bg-charcoal border border-charcoal/80 text-silver hover:text-ivory hover:bg-smoke transition-colors flex items-center justify-center shadow-lg"
             aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
             <svg

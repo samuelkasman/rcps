@@ -11,8 +11,8 @@ export function Navbar() {
       <div className="h-full px-[20px] flex items-center justify-between">
         <Logo />
         <div className="flex items-center gap-3">
-          <LanguageSwitcher />
           <ThemeSwitcher />
+          <LanguageSwitcher />
           <AuthButtons />
         </div>
       </div>

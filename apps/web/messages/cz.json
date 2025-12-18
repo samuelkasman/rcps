@@ -14,7 +14,9 @@
   "Navbar": {
     "signIn": "Přihlásit se",
     "signUp": "Registrovat",
-    "signOut": "Odhlásit se"
+    "signOut": "Odhlásit se",
+    "profile": "Profil",
+    "user": "Uživatel"
   },
   "Auth": {
     "common": {

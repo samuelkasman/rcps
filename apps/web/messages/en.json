@@ -14,7 +14,9 @@
   "Navbar": {
     "signIn": "Sign in",
     "signUp": "Sign up",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "profile": "Profile",
+    "user": "User"
   },
   "Auth": {
     "common": {
