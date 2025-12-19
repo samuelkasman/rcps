@@ -1,4 +1,5 @@
 import { SidebarLayout } from "@/components/sidebar/SidebarLayout";
+import { HeartIcon, PlusIcon, SearchIcon } from "@/components/svg";
 import { getServerSession } from "next-auth";
 import { getTranslations } from "next-intl/server";
 import { cookies } from "next/headers";
@@ -33,9 +34,7 @@ export default async function HomePage() {
           {/* Placeholder cards */}
           <div className="rounded-xl bg-charcoal/30 border border-charcoal/50 p-6 hover:border-emerald/30 transition-colors">
             <div className="w-12 h-12 rounded-lg bg-emerald/10 flex items-center justify-center mb-4">
-              <svg className="w-6 h-6 text-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
+              <PlusIcon className="w-6 h-6 text-emerald" />
             </div>
             <h3 className="text-lg font-medium text-ivory mb-2">Create Recipe</h3>
             <p className="text-silver text-sm">Add your favorite recipes to your collection</p>
@@ -43,9 +42,7 @@ export default async function HomePage() {
 
           <div className="rounded-xl bg-charcoal/30 border border-charcoal/50 p-6 hover:border-emerald/30 transition-colors">
             <div className="w-12 h-12 rounded-lg bg-emerald/10 flex items-center justify-center mb-4">
-              <svg className="w-6 h-6 text-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
+              <SearchIcon className="w-6 h-6 text-emerald" />
             </div>
             <h3 className="text-lg font-medium text-ivory mb-2">Discover</h3>
             <p className="text-silver text-sm">Explore recipes from the community</p>
@@ -53,9 +50,7 @@ export default async function HomePage() {
 
           <div className="rounded-xl bg-charcoal/30 border border-charcoal/50 p-6 hover:border-emerald/30 transition-colors">
             <div className="w-12 h-12 rounded-lg bg-emerald/10 flex items-center justify-center mb-4">
-              <svg className="w-6 h-6 text-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
+              <HeartIcon className="w-6 h-6 text-emerald" />
             </div>
             <h3 className="text-lg font-medium text-ivory mb-2">Favorites</h3>
             <p className="text-silver text-sm">Quick access to your saved recipes</p>
@@ -65,5 +60,3 @@ export default async function HomePage() {
     </SidebarLayout>
   );
 }
-
-

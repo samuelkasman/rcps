@@ -1,6 +1,7 @@
 "use client";
 
 import { Input } from "@/components/form/Input";
+import { MailIcon } from "@/components/svg";
 import { Button } from "@/components/ui/Button";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
@@ -20,16 +21,6 @@ export default function ForgotPasswordPage() {
 
     try {
       // TODO: Implement password reset API call
-      // const response = await fetch("/api/auth/forgot-password", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({ email }),
-      // });
-      // 
-      // if (!response.ok) {
-      //   throw new Error("Failed to send reset email");
-      // }
-
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
       setIsSubmitted(true);
@@ -46,19 +37,7 @@ export default function ForgotPasswordPage() {
         {/* Success icon */}
         <div className="flex justify-center">
           <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center">
-            <svg
-              className="w-8 h-8 text-green-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-              />
-            </svg>
+            <MailIcon className="w-8 h-8 text-green-400" />
           </div>
         </div>
 

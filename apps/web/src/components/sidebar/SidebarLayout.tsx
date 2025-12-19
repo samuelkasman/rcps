@@ -1,21 +1,15 @@
 "use client";
 
+import { ChevronLeftIcon, ChevronRightIcon, DashboardIcon, HomeIcon } from "@/components/svg";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { SidebarItem } from "./SidebarItem";
 
 interface SidebarLayoutProps {
   userRole?: string;
   children: ReactNode;
   initialCollapsed?: boolean;
-}
-
-// Context for sidebar state
-const SidebarContext = createContext<{ isCollapsed: boolean }>({ isCollapsed: false });
-
-export function useSidebarState() {
-  return useContext(SidebarContext);
 }
 
 const SIDEBAR_COOKIE_NAME = "sidebar-collapsed";
@@ -58,74 +52,19 @@ export function SidebarLayout({ userRole, children, initialCollapsed = false }: 
     {
       href: "/home",
       label: t("home"),
-      icon: (
-        <svg
-          className="w-5 h-5 shrink-0"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={1.5}
-            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-          />
-        </svg>
-      ),
+      icon: <HomeIcon className="w-5 h-5 shrink-0" />,
       visible: true,
     },
     {
       href: "/dashboard",
       label: t("dashboard"),
-      icon: (
-        <svg
-          className="w-5 h-5 shrink-0"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={1.5}
-            d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"
-          />
-        </svg>
-      ),
+      icon: <DashboardIcon className="w-5 h-5 shrink-0" />,
       visible: isAdmin,
     },
   ];
 
-  const NavLink = ({ item, showLabel = true }: { item: typeof navItems[0]; showLabel?: boolean }) => {
-    const isActive = pathname === item.href;
-    return (
-      <Link
-        href={item.href}
-        className={`
-          flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200
-          ${showLabel ? "" : "justify-center px-3"}
-          ${
-            isActive
-              ? "bg-emerald/15 text-emerald border-l-2 border-emerald"
-              : "text-silver hover:text-ivory hover:bg-charcoal/40"
-          }
-        `}
-        title={!showLabel ? item.label : undefined}
-      >
-        <span className={isActive ? "text-emerald" : ""}>
-          {item.icon}
-        </span>
-        {showLabel && (
-          <span className="font-medium text-sm whitespace-nowrap">{item.label}</span>
-        )}
-      </Link>
-    );
-  };
-
   return (
-    <SidebarContext.Provider value={{ isCollapsed }}>
-      <div className="min-h-screen bg-midnight">
+    <div className="min-h-screen bg-midnight">
         {/* Mobile toggle button - positioned below navbar, moves with sidebar */}
         <button
           onClick={() => setIsMobileOpen(!isMobileOpen)}
@@ -137,14 +76,7 @@ export function SidebarLayout({ userRole, children, initialCollapsed = false }: 
           `}
           aria-label={isMobileOpen ? "Close menu" : "Open menu"}
         >
-          <svg
-            className={`w-3.5 h-3.5 transition-transform duration-300 ${isMobileOpen ? "rotate-180" : ""}`}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
+          <ChevronRightIcon className={`w-3.5 h-3.5 transition-transform duration-300 ${isMobileOpen ? "rotate-180" : ""}`} />
         </button>
 
         {/* Mobile overlay - below navbar */}
@@ -168,7 +100,7 @@ export function SidebarLayout({ userRole, children, initialCollapsed = false }: 
             {navItems
               .filter((item) => item.visible)
               .map((item) => (
-                <NavLink key={item.href} item={item} showLabel={true} />
+                <SidebarItem key={item.href} {...item} />
               ))}
           </nav>
         </aside>
@@ -187,14 +119,7 @@ export function SidebarLayout({ userRole, children, initialCollapsed = false }: 
             className="absolute cursor-pointer -right-3 top-6 w-6 h-6 rounded-full bg-charcoal border border-charcoal/80 text-silver hover:text-ivory hover:bg-smoke transition-colors flex items-center justify-center shadow-lg"
             aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
-            <svg
-              className={`w-3.5 h-3.5 transition-transform duration-300 ${isCollapsed ? "rotate-180" : ""}`}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
+            <ChevronLeftIcon className={`w-3.5 h-3.5 transition-transform duration-300 ${isCollapsed ? "rotate-180" : ""}`} />
           </button>
 
           {/* Desktop nav */}
@@ -202,7 +127,7 @@ export function SidebarLayout({ userRole, children, initialCollapsed = false }: 
             {navItems
               .filter((item) => item.visible)
               .map((item) => (
-                <NavLink key={item.href} item={item} showLabel={!isCollapsed} />
+                <SidebarItem key={item.href} {...item} showLabel={!isCollapsed} />
               ))}
           </nav>
         </aside>
@@ -217,6 +142,5 @@ export function SidebarLayout({ userRole, children, initialCollapsed = false }: 
           {children}
         </main>
       </div>
-    </SidebarContext.Provider>
   );
 }
