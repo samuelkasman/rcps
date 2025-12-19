@@ -16,7 +16,7 @@ export default async function DashboardPage() {
     redirect("/auth/signin");
   }
 
-  const userRole = (session.user as any)?.role;
+  const userRole = session.user?.role;
 
   // Only allow admin users
   if (userRole !== "ADMIN") {
@@ -26,70 +26,68 @@ export default async function DashboardPage() {
   return (
     <SidebarLayout userRole={userRole} initialCollapsed={sidebarCollapsed}>
       <div className="max-w-6xl mx-auto py-12">
-          {/* Header */}
-          <div className="mb-10">
-            <h1 className="text-3xl font-heading text-ivory mb-2">
-              {t("title")}
-            </h1>
-            <p className="text-silver">{t("subtitle")}</p>
+        {/* Header */}
+        <div className="mb-10">
+          <h1 className="text-3xl font-heading text-ivory mb-2">{t("title")}</h1>
+          <p className="text-silver">{t("subtitle")}</p>
+        </div>
+
+        {/* Stats grid */}
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-10">
+          <div className="rounded-xl bg-charcoal/30 border border-charcoal/50 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-silver text-sm">{t("stats.totalUsers")}</span>
+              <div className="w-10 h-10 rounded-lg bg-emerald/10 flex items-center justify-center">
+                <UsersIcon className="w-5 h-5 text-emerald" />
+              </div>
+            </div>
+            <p className="text-2xl font-heading text-ivory">—</p>
           </div>
 
-          {/* Stats grid */}
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-10">
-            <div className="rounded-xl bg-charcoal/30 border border-charcoal/50 p-6">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-silver text-sm">{t("stats.totalUsers")}</span>
-                <div className="w-10 h-10 rounded-lg bg-emerald/10 flex items-center justify-center">
-                  <UsersIcon className="w-5 h-5 text-emerald" />
-                </div>
+          <div className="rounded-xl bg-charcoal/30 border border-charcoal/50 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-silver text-sm">{t("stats.totalRecipes")}</span>
+              <div className="w-10 h-10 rounded-lg bg-emerald/10 flex items-center justify-center">
+                <DocumentIcon className="w-5 h-5 text-emerald" />
               </div>
-              <p className="text-2xl font-heading text-ivory">—</p>
             </div>
-
-            <div className="rounded-xl bg-charcoal/30 border border-charcoal/50 p-6">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-silver text-sm">{t("stats.totalRecipes")}</span>
-                <div className="w-10 h-10 rounded-lg bg-emerald/10 flex items-center justify-center">
-                  <DocumentIcon className="w-5 h-5 text-emerald" />
-                </div>
-              </div>
-              <p className="text-2xl font-heading text-ivory">—</p>
-            </div>
-
-            <div className="rounded-xl bg-charcoal/30 border border-charcoal/50 p-6">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-silver text-sm">{t("stats.totalIngredients")}</span>
-                <div className="w-10 h-10 rounded-lg bg-emerald/10 flex items-center justify-center">
-                  <BeakerIcon className="w-5 h-5 text-emerald" />
-                </div>
-              </div>
-              <p className="text-2xl font-heading text-ivory">—</p>
-            </div>
-
-            <div className="rounded-xl bg-charcoal/30 border border-charcoal/50 p-6">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-silver text-sm">{t("stats.activeToday")}</span>
-                <div className="w-10 h-10 rounded-lg bg-emerald/10 flex items-center justify-center">
-                  <TrendingUpIcon className="w-5 h-5 text-emerald" />
-                </div>
-              </div>
-              <p className="text-2xl font-heading text-ivory">—</p>
-            </div>
+            <p className="text-2xl font-heading text-ivory">—</p>
           </div>
 
-          {/* Placeholder sections */}
-          <div className="grid gap-6 lg:grid-cols-2">
-            <div className="rounded-xl bg-charcoal/30 border border-charcoal/50 p-6">
-              <h2 className="text-lg font-heading text-ivory mb-4">{t("recentActivity")}</h2>
-              <p className="text-silver text-sm">{t("noData")}</p>
+          <div className="rounded-xl bg-charcoal/30 border border-charcoal/50 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-silver text-sm">{t("stats.totalIngredients")}</span>
+              <div className="w-10 h-10 rounded-lg bg-emerald/10 flex items-center justify-center">
+                <BeakerIcon className="w-5 h-5 text-emerald" />
+              </div>
             </div>
+            <p className="text-2xl font-heading text-ivory">—</p>
+          </div>
 
-            <div className="rounded-xl bg-charcoal/30 border border-charcoal/50 p-6">
-              <h2 className="text-lg font-heading text-ivory mb-4">{t("systemStatus")}</h2>
-              <p className="text-silver text-sm">{t("allSystemsOperational")}</p>
+          <div className="rounded-xl bg-charcoal/30 border border-charcoal/50 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-silver text-sm">{t("stats.activeToday")}</span>
+              <div className="w-10 h-10 rounded-lg bg-emerald/10 flex items-center justify-center">
+                <TrendingUpIcon className="w-5 h-5 text-emerald" />
+              </div>
             </div>
+            <p className="text-2xl font-heading text-ivory">—</p>
           </div>
         </div>
+
+        {/* Placeholder sections */}
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="rounded-xl bg-charcoal/30 border border-charcoal/50 p-6">
+            <h2 className="text-lg font-heading text-ivory mb-4">{t("recentActivity")}</h2>
+            <p className="text-silver text-sm">{t("noData")}</p>
+          </div>
+
+          <div className="rounded-xl bg-charcoal/30 border border-charcoal/50 p-6">
+            <h2 className="text-lg font-heading text-ivory mb-4">{t("systemStatus")}</h2>
+            <p className="text-silver text-sm">{t("allSystemsOperational")}</p>
+          </div>
+        </div>
+      </div>
     </SidebarLayout>
   );
 }

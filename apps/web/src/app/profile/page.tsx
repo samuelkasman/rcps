@@ -60,21 +60,27 @@ export default function ProfilePage() {
                   <p className="text-ivory">{t("email")}</p>
                   <p className="text-sm text-silver">{session?.user?.email}</p>
                 </div>
-                <Button variant="ghost" size="sm">{t("edit")}</Button>
+                <Button variant="ghost" size="sm">
+                  {t("edit")}
+                </Button>
               </div>
               <div className="flex items-center justify-between py-3 border-b border-charcoal/50">
                 <div>
                   <p className="text-ivory">{t("password")}</p>
                   <p className="text-sm text-silver">••••••••</p>
                 </div>
-                <Button variant="ghost" size="sm">{t("change")}</Button>
+                <Button variant="ghost" size="sm">
+                  {t("change")}
+                </Button>
               </div>
               <div className="flex items-center justify-between py-3">
                 <div>
                   <p className="text-ivory">{t("displayName")}</p>
                   <p className="text-sm text-silver">{session?.user?.name || t("notSet")}</p>
                 </div>
-                <Button variant="ghost" size="sm">{t("edit")}</Button>
+                <Button variant="ghost" size="sm">
+                  {t("edit")}
+                </Button>
               </div>
             </div>
           </section>
@@ -122,7 +128,11 @@ export default function ProfilePage() {
                 <p className="text-ivory">{t("deleteAccount")}</p>
                 <p className="text-sm text-silver">{t("deleteAccountDescription")}</p>
               </div>
-              <Button variant="outline" size="sm" className="border-red-500/30 text-red-400 hover:bg-red-500/10 hover:border-red-500/50">
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-red-500/30 text-red-400 hover:bg-red-500/10 hover:border-red-500/50"
+              >
                 {t("delete")}
               </Button>
             </div>

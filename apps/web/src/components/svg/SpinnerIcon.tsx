@@ -4,19 +4,8 @@ interface IconProps {
 
 export function SpinnerIcon({ className = "w-5 h-5" }: IconProps) {
   return (
-    <svg
-      className={className}
-      fill="none"
-      viewBox="0 0 24 24"
-    >
-      <circle
-        className="opacity-25"
-        cx="12"
-        cy="12"
-        r="10"
-        stroke="currentColor"
-        strokeWidth="4"
-      />
+    <svg className={className} fill="none" viewBox="0 0 24 24">
+      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
       <path
         className="opacity-75"
         fill="currentColor"
@@ -25,4 +14,3 @@ export function SpinnerIcon({ className = "w-5 h-5" }: IconProps) {
     </svg>
   );
 }
-

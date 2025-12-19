@@ -103,9 +103,7 @@ export function LanguageSwitcher() {
             >
               <span className="text-lg">{flag}</span>
               <span className="flex-1 text-left">{label}</span>
-              {locale === code && (
-                <CheckIcon className="w-4 h-4 text-emerald-light" />
-              )}
+              {locale === code && <CheckIcon className="w-4 h-4 text-emerald-light" />}
             </button>
           ))}
         </div>

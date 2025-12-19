@@ -3,7 +3,7 @@
 @theme {
   --font-heading: "Space Grotesk", Georgia, serif;
   --font-body: "DM Sans", system-ui, sans-serif;
-  
+
   /* Dark theme colors (default) */
   --color-midnight: #000000;
   --color-obsidian: #0a0a0a;
@@ -14,17 +14,19 @@
   --color-pearl: #e5e5e5;
   --color-ivory: #fafafa;
   --color-cream: #f5f0e8;
-  
+
   --color-emerald: #006742;
-  --color-emerald-hover: #003E28;
-  --color-emerald-light: #66A48E;
+  --color-emerald-hover: #003e28;
+  --color-emerald-light: #66a48e;
 }
 
 :root {
   font-family: var(--font-body);
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: var(--font-heading);
 }
 

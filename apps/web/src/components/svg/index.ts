@@ -19,4 +19,3 @@ export * from "./SunIcon";
 export * from "./TrendingUpIcon";
 export * from "./UserIcon";
 export * from "./UsersIcon";
-

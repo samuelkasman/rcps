@@ -69,9 +69,7 @@ export function AuthButtons() {
               <p className="text-sm font-medium text-ivory truncate">
                 {session?.user?.name || t("user")}
               </p>
-              <p className="text-xs text-silver truncate">
-                {session?.user?.email}
-              </p>
+              <p className="text-xs text-silver truncate">{session?.user?.email}</p>
             </div>
 
             {/* Menu items */}

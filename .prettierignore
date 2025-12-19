@@ -1,0 +1,20 @@
+# Dependencies
+node_modules
+
+# Build outputs
+dist
+.next
+.turbo
+coverage
+
+# Generated files
+packages/prisma/generated
+pnpm-lock.yaml
+
+# IDE
+.idea
+.vscode
+
+# OS
+.DS_Store
+

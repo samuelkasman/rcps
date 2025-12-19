@@ -54,7 +54,12 @@ async function main() {
 
   // 2. Nutrients
   const nutrientsData = [
-    { key: "calories", name: "Calories", unit: NutrientUnit.KCAL, category: NutrientCategory.ENERGY },
+    {
+      key: "calories",
+      name: "Calories",
+      unit: NutrientUnit.KCAL,
+      category: NutrientCategory.ENERGY,
+    },
     { key: "protein", name: "Protein", unit: NutrientUnit.G, category: NutrientCategory.MACRO },
     { key: "fat", name: "Fat", unit: NutrientUnit.G, category: NutrientCategory.MACRO },
     { key: "carbs", name: "Carbohydrates", unit: NutrientUnit.G, category: NutrientCategory.MACRO },
@@ -70,12 +75,24 @@ async function main() {
     nutrients.push(nutrient);
   }
 
-  console.log("Nutrients created:", nutrients.map(n => n.key).join(", "));
+  console.log("Nutrients created:", nutrients.map((n) => n.key).join(", "));
 
   // 3. Ingredients
   const ingredientsData = [
-    { name: "Egg", origin: ContentOrigin.BASE, ownerType: IngredientOwner.SYSTEM, visibility: Visibility.PUBLIC, density: 1 },
-    { name: "Butter", origin: ContentOrigin.BASE, ownerType: IngredientOwner.SYSTEM, visibility: Visibility.PUBLIC, density: 0.911 },
+    {
+      name: "Egg",
+      origin: ContentOrigin.BASE,
+      ownerType: IngredientOwner.SYSTEM,
+      visibility: Visibility.PUBLIC,
+      density: 1,
+    },
+    {
+      name: "Butter",
+      origin: ContentOrigin.BASE,
+      ownerType: IngredientOwner.SYSTEM,
+      visibility: Visibility.PUBLIC,
+      density: 0.911,
+    },
   ];
 
   const ingredients = [];
@@ -87,9 +104,9 @@ async function main() {
     ingredients.push(ingredient);
   }
 
-  console.log("Ingredients created:", ingredients.map(i => i.name).join(", "));
+  console.log("Ingredients created:", ingredients.map((i) => i.name).join(", "));
 
-  const ingredientByName = Object.fromEntries(ingredients.map(i => [i.name, i]));
+  const ingredientByName = Object.fromEntries(ingredients.map((i) => [i.name, i]));
 
   // 4. Ingredient Nutrition (per 100g)
   const nutritionMap: Record<string, Record<string, number>> = {
@@ -103,7 +120,9 @@ async function main() {
       const amount = values[nutrient.key];
       if (amount !== undefined) {
         await prisma.ingredientNutrition.upsert({
-          where: { ingredientId_nutrientId: { ingredientId: ingredient.id, nutrientId: nutrient.id } },
+          where: {
+            ingredientId_nutrientId: { ingredientId: ingredient.id, nutrientId: nutrient.id },
+          },
           update: {},
           create: {
             ingredientId: ingredient.id,
@@ -133,7 +152,7 @@ async function main() {
     tags.push(created);
   }
 
-  console.log("Tags created:", tags.map(t => t.name).join(", "));
+  console.log("Tags created:", tags.map((t) => t.name).join(", "));
 
   // 6. Recipe: Omelette with Butter
   const recipeIngredientAmounts: Record<string, number> = {
@@ -174,7 +193,7 @@ async function main() {
   console.log("Recipe created:", recipe.title);
 
   // 7. Recipe nutrition (derived from ingredient nutrition)
-  const nutrientLookup = new Map(nutrients.map(n => [n.key, n]));
+  const nutrientLookup = new Map(nutrients.map((n) => [n.key, n]));
   const recipeNutritionTotals: Record<string, number> = {};
 
   for (const [ingredientName, grams] of Object.entries(recipeIngredientAmounts)) {
@@ -252,7 +271,7 @@ async function main() {
 }
 
 main()
-  .catch(e => {
+  .catch((e) => {
     console.error(e);
     process.exit(1);
   })

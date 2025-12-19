@@ -43,10 +43,11 @@ export default function ForgotPasswordPage() {
 
         {/* Message */}
         <div>
-          <h1 className="text-2xl font-medium text-ivory mb-2">{t("forgotPassword.success.title")}</h1>
+          <h1 className="text-2xl font-medium text-ivory mb-2">
+            {t("forgotPassword.success.title")}
+          </h1>
           <p className="text-silver">
-            {t("forgotPassword.success.message")}{" "}
-            <span className="text-ivory">{email}</span>
+            {t("forgotPassword.success.message")} <span className="text-ivory">{email}</span>
           </p>
         </div>
 
@@ -97,12 +98,7 @@ export default function ForgotPasswordPage() {
           autoComplete="email"
         />
 
-        <Button
-          type="submit"
-          className="w-full"
-          size="lg"
-          isLoading={isLoading}
-        >
+        <Button type="submit" className="w-full" size="lg" isLoading={isLoading}>
           {t("forgotPassword.submit")}
         </Button>
       </form>

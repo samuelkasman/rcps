@@ -30,10 +30,7 @@ export function SidebarItem({ href, label, icon, showLabel = true }: SidebarItem
       title={!showLabel ? label : undefined}
     >
       <span className={isActive ? "text-emerald" : ""}>{icon}</span>
-      {showLabel && (
-        <span className="font-medium text-sm whitespace-nowrap">{label}</span>
-      )}
+      {showLabel && <span className="font-medium text-sm whitespace-nowrap">{label}</span>}
     </Link>
   );
 }
-

@@ -16,7 +16,7 @@ export default async function HomePage() {
     redirect("/auth/signin");
   }
 
-  const userRole = (session.user as any)?.role;
+  const userRole = session.user?.role;
 
   return (
     <SidebarLayout userRole={userRole} initialCollapsed={sidebarCollapsed}>

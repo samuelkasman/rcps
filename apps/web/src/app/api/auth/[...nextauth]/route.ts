@@ -49,7 +49,7 @@ export const authOptions: NextAuthOptions = {
           }
 
           const data = await response.json();
-          
+
           if (data.user) {
             return {
               id: data.user.id,
@@ -114,9 +114,12 @@ export const authOptions: NextAuthOptions = {
       // For OAuth, we may need to fetch user from API if id wasn't set
       if (account?.provider === "google" && !token.id && token.email) {
         try {
-          const response = await fetch(`${API_URL}/auth/user-by-email?email=${encodeURIComponent(token.email as string)}`, {
-            headers: { "x-internal-api-key": INTERNAL_API_KEY },
-          });
+          const response = await fetch(
+            `${API_URL}/auth/user-by-email?email=${encodeURIComponent(token.email as string)}`,
+            {
+              headers: { "x-internal-api-key": INTERNAL_API_KEY },
+            }
+          );
           if (response.ok) {
             const data = await response.json();
             token.id = data.user.id;
@@ -141,4 +144,3 @@ export const authOptions: NextAuthOptions = {
 const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
-

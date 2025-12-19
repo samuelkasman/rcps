@@ -61,7 +61,7 @@ export default function SignUpPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
 
     setIsLoading(true);
@@ -79,7 +79,7 @@ export default function SignUpPage() {
           password: formData.password,
         }),
       });
-      
+
       if (!response.ok) {
         const data = await response.json();
         if (response.status === 409) {
@@ -172,12 +172,7 @@ export default function SignUpPage() {
           autoComplete="new-password"
         />
 
-        <Button
-          type="submit"
-          className="w-full"
-          size="lg"
-          isLoading={isLoading}
-        >
+        <Button type="submit" className="w-full" size="lg" isLoading={isLoading}>
           {t("signUp.submit")}
         </Button>
       </form>

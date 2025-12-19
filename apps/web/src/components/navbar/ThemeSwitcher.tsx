@@ -18,12 +18,7 @@ export function ThemeSwitcher() {
       "
       aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
     >
-      {theme === "dark" ? (
-        <SunIcon />
-      ) : (
-        <MoonIcon />
-      )}
+      {theme === "dark" ? <SunIcon /> : <MoonIcon />}
     </button>
   );
 }
-

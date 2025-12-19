@@ -9,9 +9,16 @@
 	"scripts": {
 		"dev": "turbo dev",
 		"build": "turbo run build",
+		"lint": "turbo run lint",
+		"lint:fix": "turbo run lint:fix",
+		"format": "turbo run format",
+		"format:check": "turbo run format:check",
 		"check-types": "turbo run check-types"
 	},
 	"devDependencies": {
+		"@rcps/config": "workspace:*",
+		"eslint": "^9.17.0",
+		"prettier": "^3.4.2",
 		"turbo": "latest"
 	}
 }

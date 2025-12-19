@@ -26,11 +26,7 @@ export default function SignOutPage() {
 
       {/* Actions */}
       <div className="flex flex-col gap-3">
-        <Button
-          onClick={() => signOut({ callbackUrl: "/" })}
-          className="w-full"
-          size="lg"
-        >
+        <Button onClick={() => signOut({ callbackUrl: "/" })} className="w-full" size="lg">
           {t("signOut.submit")}
         </Button>
         <Link href="/">

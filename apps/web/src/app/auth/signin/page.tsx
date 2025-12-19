@@ -77,9 +77,7 @@ export default function SignInPage() {
       {/* Error messages */}
       {(error || formError) && (
         <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20">
-          <p className="text-sm text-red-400 text-center">
-            {formError || getErrorMessage(error)}
-          </p>
+          <p className="text-sm text-red-400 text-center">{formError || getErrorMessage(error)}</p>
         </div>
       )}
 
@@ -117,12 +115,7 @@ export default function SignInPage() {
           </div>
         </div>
 
-        <Button
-          type="submit"
-          className="w-full"
-          size="lg"
-          isLoading={isLoading}
-        >
+        <Button type="submit" className="w-full" size="lg" isLoading={isLoading}>
           {t("signIn.submit")}
         </Button>
       </form>
