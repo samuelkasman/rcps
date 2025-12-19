@@ -2,20 +2,16 @@
 	"name": "rcps",
 	"private": true,
 	"workspaces": [
-	  "apps/*",
-	  "packages/*"
+		"apps/*",
+		"packages/*"
 	],
 	"packageManager": "pnpm@8.15.4",
 	"scripts": {
-      "dev": "turbo dev",
-	  "build": "turbo run build",
-	  "lint": "turbo run lint",
-	  "format": "turbo run format",
-      "check-types": "turbo run check-types"
+		"dev": "turbo dev",
+		"build": "turbo run build",
+		"check-types": "turbo run check-types"
 	},
 	"devDependencies": {
-	  "turbo": "latest",
-	  "@biomejs/biome": "^2.3.8"
+		"turbo": "latest"
 	}
-  }
-  
+}

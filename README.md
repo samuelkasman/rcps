@@ -6,7 +6,7 @@ RCPS is a Turborepo-based monorepo containing a Next.js web app, an Express API,
 - Monorepo: Turborepo, pnpm workspaces
 - Backend: Express (apps/api), Prisma (packages/prisma), PostgreSQL
 - Frontend: Next.js (apps/web)
-- Tooling: TypeScript, tsx, Biome
+- Tooling: TypeScript, tsx
 
 ## Workspace layout
 - `apps/web` — Next.js frontend
