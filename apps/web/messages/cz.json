@@ -36,6 +36,9 @@
       "signUp": "Registrovat se",
       "submit": "Přihlásit se",
       "errors": {
+        "emailRequired": "Email je povinný",
+        "emailInvalid": "Zadejte platný email",
+        "passwordRequired": "Heslo je povinné",
         "invalidCredentials": "Neplatný email nebo heslo",
         "unexpected": "Nastala neočekávaná chyba",
         "providerError": "Nastal problém s přihlášením přes poskytovatele",
@@ -83,6 +86,8 @@
         "tryAgain": "Nedostali jste email? Zkuste znovu"
       },
       "errors": {
+        "emailRequired": "Email je povinný",
+        "emailInvalid": "Zadejte platný email",
         "sendFailed": "Nepodařilo se odeslat email. Zkuste to prosím znovu."
       }
     },

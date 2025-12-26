@@ -1,34 +1,60 @@
 "use client";
 
 import { Input } from "@/components/form/Input";
+import { forgotPasswordSchema, type ForgotPasswordFormData } from "@/validations/auth";
 import { MailIcon } from "@/components/svg";
 import { Button } from "@/components/ui/Button";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 export default function ForgotPasswordPage() {
-  const [email, setEmail] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [submittedEmail, setSubmittedEmail] = useState("");
+  const [serverError, setServerError] = useState<string | null>(null);
   const t = useTranslations("Auth");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<ForgotPasswordFormData>({
+    resolver: zodResolver(forgotPasswordSchema),
+  });
+
+  const getFieldError = (field: keyof ForgotPasswordFormData): string | undefined => {
+    const error = errors[field]?.message;
+    if (!error) return undefined;
+
+    const errorKeyMap: Record<string, string> = {
+      required: t("forgotPassword.errors.emailRequired"),
+      invalidEmail: t("forgotPassword.errors.emailInvalid"),
+    };
+
+    return errorKeyMap[error] || error;
+  };
+
+  const onSubmit = async (data: ForgotPasswordFormData) => {
+    setServerError(null);
 
     try {
       // TODO: Implement password reset API call
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
+      setSubmittedEmail(data.email);
       setIsSubmitted(true);
     } catch {
-      setError(t("forgotPassword.errors.sendFailed"));
-    } finally {
-      setIsLoading(false);
+      setServerError(t("forgotPassword.errors.sendFailed"));
     }
+  };
+
+  const handleTryAgain = () => {
+    setIsSubmitted(false);
+    setSubmittedEmail("");
+    reset();
   };
 
   if (isSubmitted) {
@@ -47,7 +73,8 @@ export default function ForgotPasswordPage() {
             {t("forgotPassword.success.title")}
           </h1>
           <p className="text-silver">
-            {t("forgotPassword.success.message")} <span className="text-ivory">{email}</span>
+            {t("forgotPassword.success.message")}{" "}
+            <span className="text-ivory">{submittedEmail}</span>
           </p>
         </div>
 
@@ -60,7 +87,7 @@ export default function ForgotPasswordPage() {
           </Link>
           <button
             type="button"
-            onClick={() => setIsSubmitted(false)}
+            onClick={handleTryAgain}
             className="text-sm text-silver hover:text-ivory transition-colors"
           >
             {t("forgotPassword.success.tryAgain")}
@@ -79,26 +106,24 @@ export default function ForgotPasswordPage() {
       </div>
 
       {/* Error message */}
-      {error && (
+      {serverError && (
         <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20">
-          <p className="text-sm text-red-400 text-center">{error}</p>
+          <p className="text-sm text-red-400 text-center">{serverError}</p>
         </div>
       )}
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <Input
           label={t("common.email")}
           type="email"
-          name="email"
           placeholder={t("common.emailPlaceholder")}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
+          error={getFieldError("email")}
           autoComplete="email"
+          {...register("email")}
         />
 
-        <Button type="submit" className="w-full" size="lg" isLoading={isLoading}>
+        <Button type="submit" className="w-full" size="lg" isLoading={isSubmitting}>
           {t("forgotPassword.submit")}
         </Button>
       </form>

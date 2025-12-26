@@ -98,8 +98,7 @@ export function LanguageSwitcher() {
               role="option"
               aria-selected={locale === code}
               onClick={() => handleLocaleChange(code)}
-              className={`
-                cursor-pointer w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-150 "text-silver hover:text-ivory hover:bg-smoke/50"`}
+              className="cursor-pointer w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-150 text-silver hover:text-ivory hover:bg-smoke/50"
             >
               <span className="text-lg">{flag}</span>
               <span className="flex-1 text-left">{label}</span>

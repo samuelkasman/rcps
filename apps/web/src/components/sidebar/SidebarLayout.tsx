@@ -131,7 +131,7 @@ export function SidebarLayout({
         </button>
 
         {/* Desktop nav */}
-        <nav className={`flex flex-col gap-1 p-4 ${isCollapsed ? "px-3" : ""}`}>
+        <nav className={`flex flex-col gap-1 p-3 ${isCollapsed ? "px-3" : ""}`}>
           {navItems
             .filter((item) => item.visible)
             .map((item) => (

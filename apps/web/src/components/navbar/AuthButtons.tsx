@@ -73,33 +73,29 @@ export function AuthButtons() {
             </div>
 
             {/* Menu items */}
-            <div className="py-1">
-              <Link
-                href="/profile"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 px-4 py-2.5 text-sm text-silver hover:text-ivory hover:bg-smoke/50 transition-colors duration-150"
-                role="menuitem"
-              >
-                <UserIcon className="w-4 h-4" />
-                {t("profile")}
-              </Link>
-            </div>
+            <Link
+              href="/profile"
+              onClick={() => setIsOpen(false)}
+              className="cursor-pointer w-full h-12 flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-150 text-silver hover:text-ivory hover:bg-smoke/50"
+              role="menuitem"
+            >
+              <UserIcon className="w-4 h-4" />
+              {t("profile")}
+            </Link>
 
             {/* Logout */}
-            <div className="py-1">
-              <button
-                type="button"
-                onClick={() => {
-                  setIsOpen(false);
-                  signOut();
-                }}
-                className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-silver hover:text-ivory hover:bg-smoke/50 transition-colors duration-150"
-                role="menuitem"
-              >
-                <LogoutIcon className="w-4 h-4" />
-                {t("signOut")}
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={() => {
+                setIsOpen(false);
+                signOut();
+              }}
+              className="cursor-pointer w-full h-12 flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-150 text-silver hover:text-ivory hover:bg-smoke/50"
+              role="menuitem"
+            >
+              <LogoutIcon className="w-4 h-4" />
+              {t("signOut")}
+            </button>
           </div>
         )}
       </div>
