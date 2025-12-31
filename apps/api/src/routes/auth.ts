@@ -1,7 +1,8 @@
 import { prisma } from "@rcps/prisma";
 import bcrypt from "bcrypt";
-import type { NextFunction, Request, Response } from "express";
 import { Router } from "express";
+import { requireInternalKey } from "../middleware/requireInternalKey";
+import { isValidEmail, isValidPassword, normalizeEmail } from "../utils/validation";
 
 const router = Router();
 
@@ -12,29 +13,6 @@ const router = Router();
 // 4. Audit logging - Log auth events (login, logout, failed attempts)
 // 5. Session management - Allow users to see/revoke active sessions
 // 6. 2FA - Add optional two-factor authentication
-
-// Internal API key for server-to-server communication (NextAuth -> API)
-const INTERNAL_API_KEY = process.env.INTERNAL_API_KEY || "dev-internal-key";
-
-// Middleware to verify internal API key for sensitive endpoints
-const requireInternalKey = (req: Request, res: Response, next: NextFunction) => {
-  const apiKey = req.headers["x-internal-api-key"];
-  if (apiKey !== INTERNAL_API_KEY) {
-    return res.status(403).json({ error: "Forbidden" });
-  }
-  next();
-};
-
-// Email validation regex
-const isValidEmail = (email: string): boolean => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-};
-
-// Password validation (min 8 chars)
-const isValidPassword = (password: string): boolean => {
-  return password.length >= 8;
-};
 
 // Register a new user
 router.post("/register", async (req, res) => {
@@ -55,7 +33,7 @@ router.post("/register", async (req, res) => {
     }
 
     // Normalize email
-    const normalizedEmail = email.toLowerCase().trim();
+    const normalizedEmail = normalizeEmail(email);
 
     // Check if user already exists
     const existingUser = await prisma.user.findUnique({
@@ -103,7 +81,7 @@ router.post("/login", async (req, res) => {
     }
 
     // Normalize email
-    const normalizedEmail = email.toLowerCase().trim();
+    const normalizedEmail = normalizeEmail(email);
 
     // Find user
     const user = await prisma.user.findUnique({
@@ -199,7 +177,7 @@ router.get("/user-by-email", requireInternalKey, async (req, res) => {
 // OAuth sign in - create or find user - INTERNAL ONLY
 router.post("/oauth", requireInternalKey, async (req, res) => {
   try {
-    const { email, name, provider, providerAccountId } = req.body;
+    const { email, name, provider } = req.body;
 
     if (!email || !provider) {
       return res.status(400).json({ error: "Email and provider are required" });

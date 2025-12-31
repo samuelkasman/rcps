@@ -2,6 +2,7 @@ import cors from "cors";
 import "dotenv/config";
 import express from "express";
 import authRouter from "./routes/auth";
+import dashboardRouter from "./routes/dashboard";
 import ingredientsRouter from "./routes/ingredients";
 import recipesRouter from "./routes/recipes";
 
@@ -27,9 +28,10 @@ app.get("/", (_, res) => {
 });
 
 app.use("/auth", authRouter);
+app.use("/dashboard", dashboardRouter);
 app.use("/ingredients", ingredientsRouter);
 app.use("/recipes", recipesRouter);
 
 app.listen(3001, () => {
-  console.log("API running on http://localhost:3001");
+  console.info("API running on http://localhost:3001");
 });

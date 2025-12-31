@@ -124,7 +124,23 @@
     "recentActivity": "Recent Activity",
     "systemStatus": "System Status",
     "noData": "No recent activity to display",
-    "allSystemsOperational": "All systems operational"
+    "allSystemsOperational": "All systems operational",
+    "system": {
+      "database": "Database",
+      "apiServer": "API Server",
+      "authentication": "Authentication",
+      "operational": "Operational"
+    },
+    "activity": {
+      "userJoined": "{name} joined",
+      "recipeCreated": "{author} created \"{title}\""
+    },
+    "time": {
+      "justNow": "just now",
+      "minutesAgo": "{count}m ago",
+      "hoursAgo": "{count}h ago",
+      "daysAgo": "{count}d ago"
+    }
   },
   "Profile": {
     "user": "User",

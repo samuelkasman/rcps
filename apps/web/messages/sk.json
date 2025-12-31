@@ -124,7 +124,23 @@
     "recentActivity": "Posledná aktivita",
     "systemStatus": "Stav systému",
     "noData": "Žiadna nedávna aktivita na zobrazenie",
-    "allSystemsOperational": "Všetky systémy fungujú"
+    "allSystemsOperational": "Všetky systémy fungujú",
+    "system": {
+      "database": "Databáza",
+      "apiServer": "API Server",
+      "authentication": "Autentifikácia",
+      "operational": "Funkčné"
+    },
+    "activity": {
+      "userJoined": "{name} sa pripojil/a",
+      "recipeCreated": "{author} vytvoril/a \"{title}\""
+    },
+    "time": {
+      "justNow": "práve teraz",
+      "minutesAgo": "pred {count}m",
+      "hoursAgo": "pred {count}h",
+      "daysAgo": "pred {count}d"
+    }
   },
   "Profile": {
     "user": "Používateľ",
